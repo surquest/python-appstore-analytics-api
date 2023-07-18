@@ -16,60 +16,60 @@ class Params:
         params = []
         combi = {
             Measure.ACTIVE_DEVICES: [
-                    Group.TOTAL, 
-                    Group.APP_VERSION, 
+            #         Group.TOTAL, 
+            #         Group.APP_VERSION, 
                     Group.COUNTRY, 
-                    Group.DEVICE, 
-                    Group.OS_VERSION, 
-                    Group.SOURCE
+            #         Group.DEVICE, 
+            #         Group.OS_VERSION, 
+            #         Group.SOURCE
                 ],
-            Measure.CRASHES: [
-                    Group.TOTAL, 
-                    Group.APP_VERSION, 
-                    Group.DEVICE, 
-                    Group.OS_VERSION
-                ],
+            # Measure.CRASHES: [
+            #         Group.TOTAL, 
+            #         Group.APP_VERSION, 
+            #         Group.DEVICE, 
+            #         Group.OS_VERSION
+            #     ],
             Measure.INSTALLS: [
-                    Group.TOTAL, 
-                    Group.APP_VERSION, 
-                    Group.COUNTRY, 
+            #         Group.TOTAL, 
+            #         Group.APP_VERSION, 
+            #         Group.COUNTRY, 
                     Group.DEVICE, 
-                    Group.OS_VERSION, 
-                    Group.SOURCE
+            #         Group.OS_VERSION, 
+            #         Group.SOURCE
                 ],
             Measure.OPT_IN_RATE: [
                     Group.TOTAL
                 ],
-            Measure.SALES: [
-                    Group.TOTAL, 
-                    Group.COUNTRY, 
-                    Group.DEVICE, 
-                    Group.OS_VERSION, 
-                    Group.PRODUCT,
-                    Group.SOURCE
-                ],
-            Measure.UNINSTALLS: [
-                    Group.TOTAL, 
-                    Group.APP_VERSION,
-                    Group.COUNTRY, 
-                    Group.DEVICE, 
-                    Group.OS_VERSION,
-                    Group.SOURCE
-            ],
-            Measure.UNITS: [
-                    Group.TOTAL, 
-                    Group.COUNTRY, 
-                    Group.DEVICE, 
-                    Group.OS_VERSION,
-                    Group.SOURCE
-            ],
-            Measure.VISITS: [
-                    Group.TOTAL, 
-                    Group.COUNTRY, 
-                    Group.DEVICE, 
-                    Group.OS_VERSION,
-                    Group.SOURCE
-            ]
+            # Measure.SALES: [
+            #         Group.TOTAL, 
+            #         Group.COUNTRY, 
+            #         Group.DEVICE, 
+            #         Group.OS_VERSION, 
+            #         Group.PRODUCT,
+            #         Group.SOURCE
+            #     ],
+            # Measure.UNINSTALLS: [
+            #         Group.TOTAL, 
+            #         Group.APP_VERSION,
+            #         Group.COUNTRY, 
+            #         Group.DEVICE, 
+            #         Group.OS_VERSION,
+            #         Group.SOURCE
+            # ],
+            # Measure.UNITS: [
+            #         Group.TOTAL, 
+            #         Group.COUNTRY, 
+            #         Group.DEVICE, 
+            #         Group.OS_VERSION,
+            #         Group.SOURCE
+            # ],
+            # Measure.VISITS: [
+            #         Group.TOTAL, 
+            #         Group.COUNTRY, 
+            #         Group.DEVICE, 
+            #         Group.OS_VERSION,
+            #         Group.SOURCE
+            # ]
         }
 
         for key in combi.keys():
