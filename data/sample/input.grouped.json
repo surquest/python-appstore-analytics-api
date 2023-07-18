@@ -1,0 +1,120 @@
+{
+    "size": 5,
+    "results": [
+        {
+            "adamId": "1207764294",
+            "group": {
+                "key": "AppleTV",
+                "title": "Apple TV"
+            },
+            "data": [
+                {
+                    "date": "2023-07-05T00:00:00Z",
+                    "installs": -1.0
+                },
+                {
+                    "date": "2023-07-06T00:00:00Z",
+                    "installs": -1.0
+                }
+            ],
+            "totals": {
+                "value": -1.0,
+                "type": "COUNT",
+                "key": "installs"
+            },
+            "meetsThreshold": false
+        },
+        {
+            "adamId": "1207764294",
+            "group": {
+                "key": "Desktop",
+                "title": "Desktop"
+            },
+            "data": [
+                {
+                    "date": "2023-07-05T00:00:00Z",
+                    "installs": 1.0
+                },
+                {
+                    "date": "2023-07-06T00:00:00Z",
+                    "installs": 0.0
+                }
+            ],
+            "totals": {
+                "value": 1.0,
+                "type": "COUNT",
+                "key": "installs"
+            },
+            "meetsThreshold": true
+        },
+        {
+            "adamId": "1207764294",
+            "group": {
+                "key": "iPad",
+                "title": "iPad"
+            },
+            "data": [
+                {
+                    "date": "2023-07-05T00:00:00Z",
+                    "installs": 13.0
+                },
+                {
+                    "date": "2023-07-06T00:00:00Z",
+                    "installs": 12.0
+                }
+            ],
+            "totals": {
+                "value": 25.0,
+                "type": "COUNT",
+                "key": "installs"
+            },
+            "meetsThreshold": true
+        },
+        {
+            "adamId": "1207764294",
+            "group": {
+                "key": "iPhone",
+                "title": "iPhone"
+            },
+            "data": [
+                {
+                    "date": "2023-07-05T00:00:00Z",
+                    "installs": 175.0
+                },
+                {
+                    "date": "2023-07-06T00:00:00Z",
+                    "installs": 193.0
+                }
+            ],
+            "totals": {
+                "value": 368.0,
+                "type": "COUNT",
+                "key": "installs"
+            },
+            "meetsThreshold": true
+        },
+        {
+            "adamId": "1207764294",
+            "group": {
+                "key": "iPod",
+                "title": "iPod"
+            },
+            "data": [
+                {
+                    "date": "2023-07-05T00:00:00Z",
+                    "installs": 0.0
+                },
+                {
+                    "date": "2023-07-06T00:00:00Z",
+                    "installs": 0.0
+                }
+            ],
+            "totals": {
+                "value": 0.0,
+                "type": "COUNT",
+                "key": "installs"
+            },
+            "meetsThreshold": true
+        }
+    ]
+}
