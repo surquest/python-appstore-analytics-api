@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "surquest-utils-appstoreconnect-analytics-api"
-version = "0.0.1rc1"
+version = "0.0.1rc2"
 description = "Client library for AppStore Connect Analytics API "
 authors = [
     {name= "Michal Švarc", email= "michal.svarc@surquest.com"}
