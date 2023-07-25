@@ -9,15 +9,23 @@ class TestClient:
     """
 
     client = Client(
-        mayacinfo=os.getenv("MYACINFO")
+        mayacinfo=os.getenv("MYACINFO", "")
         )
+    
 
-    def test_get_endpoint(self):
+    def test_is_appid_set(self):
+        """
+        Test if the APPID environment variable is set.
+        """
+
+        assert os.getenv("APPID", "") != "", F"Expected APPID to be set, got: {os.getenv('APPID', '')}."
+
+    def test_get_endpoint_timeseries(self):
         """
         Test the get_endpoint method of the Client class.
         """
-        expected = "https://appstoreconnect.apple.com/analytics/api/v1/data/test"
-        actual = Client.get_endpoint(subject="test")
+        expected = "https://appstoreconnect.apple.com/analytics/api/v1/data/time-series"
+        actual = Client.get_endpoint(subject="time-series")
 
         assert actual == expected, F"Expected URL: {expected}, got: {actual}."
 

@@ -64,6 +64,7 @@ docker run --rm -it `
  -e "APPID={ADD-YOUR-APP-ID}" `
  -e "MYACINFO={ADD-YOUR-MYACINFO}" `
  surquest/utils/appstoreconnect:dev pytest
+
 ```
 
 # License

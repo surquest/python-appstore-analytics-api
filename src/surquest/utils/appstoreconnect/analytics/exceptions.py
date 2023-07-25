@@ -3,6 +3,7 @@
 
 # Collection of exceptions for the App Store Connect Analytics API
 
+
 class AppStoreConnectAnalyticsError(Exception):
 
     """Base class for exceptions in this module."""
@@ -19,5 +20,4 @@ class AppStoreConnectAnalyticsRequestError(AppStoreConnectAnalyticsError):
     """
 
     def __init__(self, message: str) -> None:
-        
         self.message = message

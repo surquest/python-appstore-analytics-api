@@ -96,7 +96,7 @@ class Params:
 class TestAnalytics:
 
     client = Client(
-        mayacinfo=os.getenv("MYACINFO")
+        mayacinfo=os.getenv("MYACINFO", "")
         )
     
     analytics = Analytics(
@@ -117,10 +117,10 @@ class TestAnalytics:
         frequency = inputs.get("frequency")
         start_date = inputs.get("startDate")
         end_date = inputs.get("endDate")
-        app_ids = str(inputs.get("appId"))
+        app_id = inputs.get("appId")
 
         data = self.analytics.get_time_series(
-            app_ids=app_ids,
+            app_id=app_id,
             measure=measure,
             start_date=start_date,
             end_date=end_date,
@@ -140,3 +140,20 @@ class TestAnalytics:
 
         # check the length of the data
         assert len(data) >= expected.get("length"), F"Expected length should be greater or equal: {expected.get('length')}, got: {len(data)}."
+
+    def test_get_retenions(self):
+         
+        data = self.analytics.get_retentions(
+                app_id=os.getenv("APPID", ""),
+                start_date=dt.datetime(2023, 6, 10),
+                end_date=dt.datetime(2023, 6, 12),
+                frequency=Frequency.DAY
+         )
+
+        # write out data into a json file
+        with open("../data/sample/output.retentions.json", "w") as f:
+            json.dump(data, f, indent=4, default=str)
+
+        assert isinstance(data, list), F"Expected type: list, got: {type(data)}."
+        assert data != [], F"Expected data to not be empty, got: {data}."
+        assert len(data) == 90, F"Expected length should be 3, got: {len(data)}."

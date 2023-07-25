@@ -1,7 +1,7 @@
 from enum import Enum
 
-class Measure(str, Enum):
 
+class Measure(str, Enum):
     CRASHES = "crashes"
     INSTALLS = "installs"
     UNINSTALLS = "uninstalls"
@@ -13,7 +13,6 @@ class Measure(str, Enum):
 
 
 class Group(str, Enum):
-
     TOTAL = None
     APP_VERSION = "appVersion"
     COUNTRY = "storefront"
@@ -21,11 +20,9 @@ class Group(str, Enum):
     OS_VERSION = "platformVersion"
     PRODUCT = "purchase"
     SOURCE = "source"
-    
 
 
 class Frequency(str, Enum):
-
     DAY = "day"
     WEEK = "week"
     MONTH = "month"

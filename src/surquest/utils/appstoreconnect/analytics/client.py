@@ -6,6 +6,7 @@ import time
 from typing import Dict, Optional
 from .exceptions import AppStoreConnectAnalyticsRequestError
 
+
 class Client:
     """
     A class for interacting with the App Store Connect API.
@@ -40,12 +41,24 @@ class Client:
         :return: The API endpoint URL.
         :rtype: str
         """
-        
-        endpoint = F"/analytics/api/v1/{group}/{subject}"
+
+        endpoint = None
+
+        if subject == "retention":
+            endpoint = "/analytics/api/v1/data/retention"
+
+        if subject == "reviews":
+            endpoint = "/WebObjects/iTunesConnect.woa/ra/apps/{app_id}/platforms/ios/reviews?index={index}&sort=REVIEW_SORT_ORDER_MOST_RECENT"
+
+        if subject == "time-series":
+            endpoint = f"/analytics/api/v1/{group}/{subject}"
+
+        if endpoint is None:
+
+            raise ValueError(f"Invalid subject: {subject}")
 
         return Client.BASE_URL + endpoint
-    
-    
+
     def request(
         self,
         url: str,
@@ -66,38 +79,27 @@ class Client:
         """
 
         iteration = 0
-        response = self.do_request(
-            url=url,
-            method=method,
-            data=data
-        )
+        response = self.do_request(url=url, method=method, data=data)
 
         while response.status_code == 429 and iteration < 5:
-            
             iteration += 1
-            sleep = iteration*3
+            sleep = iteration * 3
             print("-> Too many requests. Waiting for {sleep} seconds.")
             time.sleep(sleep)
 
-            response = self.do_request(
-                url=url,
-                method=method,
-                data=data
-            )
-            
+            response = self.do_request(url=url, method=method, data=data)
+
         if response.status_code != 200:
-            
-            message=F"--> Request failed with status code: {response.status_code}. " \
-                + F"Response: {response.text}"
-            
+            message = (
+                f"--> Request failed with status code: {response.status_code}. "
+                + f"Response: {response.text}"
+            )
+
             print(message)
 
-            raise AppStoreConnectAnalyticsRequestError(
-                message=message
-            )
-    
+            raise AppStoreConnectAnalyticsRequestError(message=message)
+
         return response.json()
-    
 
     def do_request(
         self,
@@ -118,9 +120,9 @@ class Client:
         :rtype: requests.Response
         """
 
-        print("-"*50)
-        print(F"Requesting URL: {url}")
-        
+        print("-" * 50)
+        print(f"Requesting URL: {url}")
+
         response = requests.request(
             method=method,
             url=url,
@@ -131,14 +133,10 @@ class Client:
                 "Accept": "application/json, text/plain, */*",
                 "X-Requested-By": "analytics.itunes.apple.com",
             },
-            cookies={
-                "itctx": self._get_itctx(),
-                "myacinfo": self.__mayacinfo 
-                }
+            cookies={"itctx": self._get_itctx(), "myacinfo": self.__mayacinfo},
         )
 
         return response
-    
 
     def _get_apple_widget_key(self) -> str:
         """
@@ -150,15 +148,16 @@ class Client:
 
         if self.__apple_widget_key is not None:
             return self.__apple_widget_key
-        
-        url = Client.BASE_URL+"/olympus/v1/app/config?hostname=itunesconnect.apple.com"
+
+        url = (
+            Client.BASE_URL + "/olympus/v1/app/config?hostname=itunesconnect.apple.com"
+        )
 
         response = requests.get(url=url)
 
         self.__apple_widget_key = response.json().get("authServiceKey")
-        
+
         return self.__apple_widget_key
-    
 
     def _get_itctx(self) -> str:
         """
@@ -171,21 +170,18 @@ class Client:
         if self.__itctx is not None:
             return self.__itctx
 
-        url = Client.BASE_URL+"/olympus/v1/session"
+        url = Client.BASE_URL + "/olympus/v1/session"
 
         headers = {
-            'Content-Type': 'application/json',
-            'X-Apple-Widget-Key': self._get_apple_widget_key(),
-            'X-Requested-By': 'dev.apple.com    ',
-            'Accept': 'application/json, text/plain, */*',
-            'Referrer': 'https://appstoreconnect.apple.com/login',
-            'Cookie': 'myacinfo='+self.__mayacinfo
+            "Content-Type": "application/json",
+            "X-Apple-Widget-Key": self._get_apple_widget_key(),
+            "X-Requested-By": "dev.apple.com    ",
+            "Accept": "application/json, text/plain, */*",
+            "Referrer": "https://appstoreconnect.apple.com/login",
+            "Cookie": "myacinfo=" + self.__mayacinfo,
         }
 
-        response = requests.get(
-            url=url,
-            headers=headers
-        )
+        response = requests.get(url=url, headers=headers)
 
         self.__itctx = response.cookies.get_dict().get("itctx")
 
