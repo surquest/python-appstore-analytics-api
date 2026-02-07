@@ -23,13 +23,17 @@ from surquest.utils.appstoreconnect.analytics import (
     Analytics as AppStoreConnectAnalytics,
     Formatter,
     Frequency,
-    Measures,
-    Dimension,
+    Measure,
+    Group
 )
+
+# Cookie value from https://appstoreconnect.apple.com/
+MYACINFO="Value of your Cookie: `myacinfo` from: https://appstoreconnect.apple.com/ "
+APP_ID="YOUR APP ID"
 
 # Create client
 client = AppStoreConnectClient(
-    mayacinfo="ADD-YOUR-MYACINFO", # is a Cookie value from https://appstoreconnect.apple.com/
+    mayacinfo=MYACINFO
 )
 
 # Create analytics object
@@ -39,11 +43,11 @@ analytics = AppStoreConnectAnalytics(
 
 # Get time series data
 data = analytics.get_time_series(
-    app_ids=["ADD-YOUR-APP-ID"],
-    measure=Measures.INSTALLS,
+    app_ids=[APP_ID],
+    measure=Measure.INSTALLS,
     start_date=dt.date(2021, 1, 1),
     end_date=dt.date(2021, 1, 31),
-    grouping=Group.COUNTRY
+    grouping=Group.COUNTRY,
     frequency=Frequency.DAY,
     )
 

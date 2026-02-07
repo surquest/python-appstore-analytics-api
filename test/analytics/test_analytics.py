@@ -150,9 +150,9 @@ class TestAnalytics:
                 frequency=Frequency.DAY
          )
 
-        # write out data into a json file
-        with open("../data/sample/output.retentions.json", "w") as f:
-            json.dump(data, f, indent=4, default=str)
+        # # write out data into a json file
+        # with open("../data/sample/output.retentions.json", "w") as f:
+        #     json.dump(data, f, indent=4, default=str)
 
         assert isinstance(data, list), F"Expected type: list, got: {type(data)}."
         assert data != [], F"Expected data to not be empty, got: {data}."
